@@ -1,17 +1,27 @@
+#gradle
 .gradle/
-CREDITS-fml.txt
-LICENSE-fml.txt
-MinecraftForge-Credits.txt
-MinecraftForge-License.txt
-eclipse/
-forge-*-changelog.txt
-forge-*-mdk.zip
 gradle/
 gradlew
 gradlew.bat
+
+#forge
+CREDITS-fml.txt
+forge-*-changelog.txt
+forge-*-mdk.zip
+LICENSE-fml.txt
 logs/
-update-test
-tutorial.md
+MinecraftForge-Credits.txt
+MinecraftForge-License.txt
 Paulscode IBXM Library License.txt
 Paulscode SoundSystem CodecIBXM License.txt
 README.txt
+tutorial.md
+update-test
+
+#eclipse
+eclipse
+
+#intellij
+*.iml
+*.ipr
+*.iws
