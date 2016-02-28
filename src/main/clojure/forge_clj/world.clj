@@ -15,8 +15,8 @@
    [net.minecraft.world.chunk IChunkProvider Chunk]
    [net.minecraft.world World WorldType SpawnerAnimals]
    [net.minecraft.util MathHelper]
-   [cpw.mods.fml.common IWorldGenerator]
-   [cpw.mods.fml.common.eventhandler Event$Result]
+   [net.minecraftforge.fml.common IWorldGenerator]
+   [net.minecraftforge.fml.common.eventhandler Event$Result]
    [net.minecraftforge.event.terraingen ChunkProviderEvent$ReplaceBiomeBlocks InitMapGenEvent$EventType TerrainGen PopulateChunkEvent$Populate$EventType PopulateChunkEvent$Pre PopulateChunkEvent$Post]
    [net.minecraftforge.common MinecraftForge]))
 

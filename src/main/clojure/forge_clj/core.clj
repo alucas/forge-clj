@@ -8,8 +8,8 @@
    [clojure.tools.nrepl.server :refer [start-server]])
   (:import
    [java.lang.reflect Field]
-   [cpw.mods.fml.common Mod Mod$EventHandler FMLCommonHandler]
-   [cpw.mods.fml.common.event FMLPreInitializationEvent FMLInitializationEvent FMLPostInitializationEvent]))
+   [net.minecraftforge.fml.common.Mod$EventHandler FMLCommonHandler]
+   [net.minecraftforge.fml.common.event FMLPreInitializationEvent FMLInitializationEvent FMLPostInitializationEvent]))
 
 (declare client?)
 
@@ -42,9 +42,9 @@
        (gen-class
         :name ~(with-meta fullname `{Mod {:name ~(str (gen-classname mod-name)) :modid ~(str mod-name) :version ~(str version)}})
         :prefix ~(symbol prefix)
-        :methods [[~(with-meta 'preInit `{Mod$EventHandler []}) [cpw.mods.fml.common.event.FMLPreInitializationEvent] ~'void]
-                  [~(with-meta 'init `{Mod$EventHandler []}) [cpw.mods.fml.common.event.FMLInitializationEvent] ~'void]
-                  [~(with-meta 'postInit `{Mod$EventHandler []}) [cpw.mods.fml.common.event.FMLPostInitializationEvent] ~'void]])
+        :methods [[~(with-meta 'preInit `{Mod$EventHandler []}) [net.minecraftforge.fml.common.event.FMLPreInitializationEvent] ~'void]
+                  [~(with-meta 'init `{Mod$EventHandler []}) [net.minecraftforge.fml.common.event.FMLInitializationEvent] ~'void]
+                  [~(with-meta 'postInit `{Mod$EventHandler []}) [net.minecraftforge.fml.common.event.FMLPostInitializationEvent] ~'void]])
        (with-prefix ~prefix
          (defn ~'preInit [~'this ~'event]
            ~(when repl
@@ -252,9 +252,9 @@
 (gen-class
  :name ^{Mod {:name "ForgeClj" :modid "forge-clj" :version "0.5.2"}} forge_clj.core.ForgeClj
  :prefix "forge-clj-"
- :methods [[^{Mod$EventHandler []} preInit [cpw.mods.fml.common.event.FMLPreInitializationEvent] void]
-           [^{Mod$EventHandler []} init [cpw.mods.fml.common.event.FMLInitializationEvent] void]
-           [^{Mod$EventHandler []} postInit [cpw.mods.fml.common.event.FMLPostInitializationEvent] void]])
+ :methods [[^{Mod$EventHandler []} preInit [net.minecraftforge.fml.common.event.FMLPreInitializationEvent] void]
+           [^{Mod$EventHandler []} init [net.minecraftforge.fml.common.event.FMLInitializationEvent] void]
+           [^{Mod$EventHandler []} postInit [net.minecraftforge.fml.common.event.FMLPostInitializationEvent] void]])
 
 (with-prefix forge-clj-
   (defn preInit [this event]

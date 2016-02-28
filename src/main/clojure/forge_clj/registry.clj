@@ -7,9 +7,9 @@
    [net.minecraftforge.common IExtendedEntityProperties]
    [net.minecraft.entity Entity]
    [net.minecraftforge.common MinecraftForge BiomeDictionary BiomeManager BiomeDictionary$Type BiomeManager$BiomeType BiomeManager$BiomeEntry]
-   [cpw.mods.fml.common.registry GameRegistry]
-   [cpw.mods.fml.common FMLCommonHandler IWorldGenerator]
-   [cpw.mods.fml.common.network NetworkRegistry]))
+   [net.minecraftforge.fml.common.registry GameRegistry]
+   [net.minecraftforge.fml.common FMLCommonHandler IWorldGenerator]
+   [net.minecraftforge.fml.common.network NetworkRegistry]))
 
 (def biome-type-list
   {:desert BiomeManager$BiomeType/DESERT

@@ -4,12 +4,12 @@
    [forge-clj.util :refer [get-fullname gen-classname]]
    [clojure.string :as string])
   (:import
-   [cpw.mods.fml.common.eventhandler SubscribeEvent]))
+   [net.minecraftforge.fml.common.eventhandler SubscribeEvent]))
 
 (def event-packages
   "Just a vector of packages to be searched for event classes."
   ["net.minecraftforge.event."
-   "cpw.mods.fml.common.event."
+   "net.minecraftforge.fml.common.event."
    "net.minecraftforge.event.brewing."
    "net.minecraftforge.event.entity."
    "net.minecraftforge.event.entity.item."
@@ -20,7 +20,7 @@
    "net.minecraftforge.event.world."
    "net.minecraftforge.client.event."
    "net.minecraftforge.client.event.sound."
-   "cpw.mods.fml.client.event."])
+   "net.minecraftforge.fml.client.event."])
 
 (defn try-to-resolve-event
   "Given a list of event packages, will try to use Class/forName to resolve the given event as a Class.

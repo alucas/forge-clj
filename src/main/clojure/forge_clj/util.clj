@@ -16,7 +16,7 @@
    [net.minecraft.inventory IInventory]
    [net.minecraft.server MinecraftServer]
    [net.minecraft.world World]
-   [cpw.mods.fml.common.registry GameRegistry]))
+   [net.minecraftforge.fml.common.registry GameRegistry]))
 
 (defn get-field
   "Access to private or protected field.  field-name is a symbol or

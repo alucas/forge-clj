@@ -4,7 +4,7 @@
    [forge-clj.core :refer [defclass]]
    [forge-clj.util :refer [get-fullname with-prefix]])
   (:import
-   [cpw.mods.fml.common.network IGuiHandler NetworkRegistry]
+   [net.minecraftforge.fml.common.network IGuiHandler NetworkRegistry]
    [net.minecraft.inventory Container Slot IInventory]
    [net.minecraft.entity.player EntityPlayer]
    [net.minecraft.item ItemStack]
