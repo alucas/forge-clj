@@ -6,16 +6,18 @@ gradlew.bat
 
 #forge
 CREDITS-fml.txt
-forge-*-changelog.txt
-forge-*-mdk.zip
 LICENSE-fml.txt
-logs/
 MinecraftForge-Credits.txt
 MinecraftForge-License.txt
 Paulscode IBXM Library License.txt
 Paulscode SoundSystem CodecIBXM License.txt
 README.txt
+build/
+forge-*-changelog.txt
+forge-*-mdk.zip
+logs/
 tutorial.md
+run/
 update-test
 
 #eclipse
