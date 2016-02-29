@@ -21,9 +21,9 @@
 (defn get-tile-entity-looked-at
   "Gets the tile entity the player is looking at."
   []
-  (let [^MovingObjectPosition mop (.rayTrace (.-renderViewEntity ^Minecraft (minecraft-instance)) 200 1.0)]
+  (let [^MovingObjectPosition mop (.rayTrace (.getRenderViewEntity ^Minecraft (minecraft-instance)) 200 1.0)]
     (if mop
-      (get-tile-entity-at (first (server-worlds)) (.-blockX mop) (.-blockY mop) (.-blockZ mop)))))
+      (get-tile-entity-at (first (server-worlds)) (.getX (.getBlockPos mop)) (.getY (.getBlockPos mop)) (.getZ (.getBlockPos mop))))))
 
 (defn resource-location
   "Given a string representing a ResourceLocation, creates a ResourceLocation for the provided string."

@@ -4,10 +4,8 @@
    [forge-clj.core :refer [defclass]]
    [forge-clj.util :refer [get-fullname with-prefix]])
   (:import
-   [net.minecraftforge.fml.common.network IGuiHandler NetworkRegistry]
+   [net.minecraftforge.fml.common.network IGuiHandler]
    [net.minecraft.inventory Container Slot IInventory]
-   [net.minecraft.entity.player EntityPlayer]
-   [net.minecraft.item ItemStack]
    [java.util List]))
 
 (defmacro defguihandler

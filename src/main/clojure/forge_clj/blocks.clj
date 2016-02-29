@@ -5,7 +5,7 @@
   (:import
    [net.minecraft.block Block BlockContainer]
    [net.minecraft.block.material Material]
-   [net.minecraft.item ItemBlock ItemBlockWithMetadata]))
+   [net.minecraft.item ItemBlock]))
 
 (defmacro defblock
   "DEFOBJ: Generates an anonymous instance of a Block with the specified properties.
@@ -33,4 +33,4 @@
   (let [itemdata (apply hash-map args)
         meta? (:metadata? itemdata)
         itemdata (dissoc itemdata :metadata?)]
-    `(defobj ~(if meta? `ItemBlockWithMetadata `ItemBlock) ~(if meta? [block block] [block]) ~item-name ~itemdata)))
+    `(defobj ItemBlock [block] ~item-name ~itemdata)))

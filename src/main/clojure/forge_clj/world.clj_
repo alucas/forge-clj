@@ -28,7 +28,7 @@
   "Takes a map of all the generate functions, finds the respective dimension needed,
   and runs the correct generation function for that dimension."
   [random chunk-x chunk-z ^World world generate-fns]
-  (let [dimension-id (.-dimensionId (.-provider world))
+  (let [dimension-id (.getDimensionId (.-provider world))
         func (get generate-fns dimension-id)]
     (when func
       (func world random chunk-x chunk-z))))
@@ -38,7 +38,8 @@
   the number of chances to spawn, and the heights, runs the respective generator at random locations in the chunk,
   according to the Random object."
   [^WorldGenerator generator ^World world ^Random rand-obj chunk-x chunk-z chances height1 height2]
-  (loop [chance chances]
+  (println "TODO")
+  #_(loop [chance chances]
     (when (< 0 chance)
       (.generate generator world rand-obj (int (+ (* 16 chunk-x) (.nextInt rand-obj 16))) (int (+ height1 (.nextInt rand-obj (abs (- height1 height2))))) (int (+ (* 16 chunk-z) (.nextInt rand-obj 16))))
       (recur (dec chance)))))
@@ -72,13 +73,13 @@
    (.generateNoiseOctaves noise-generator nil (int par1) (int par2) (int par3) (int par4) (int par5) (int par6) (double par7) (double par8) (double par9))))
 
 (defn calc-biome-floats [^BiomeGenBase biome1 ^BiomeGenBase biome2 world-type parabolic-field-val]
-  (let [root-height (.-rootHeight biome2)
-        height-variation (.-heightVariation biome2)
+  (let [root-height (.minHeight biome2)
+        height-variation (.maxHeight biome2)
         amplified? (and (= world-type WorldType/AMPLIFIED) (< 0.0 root-height))
         root-height (if amplified? (+ 1 (* 2.0 root-height)) root-height)
         height-variation (if amplified? (+ 1 (* 4.0 height-variation)) height-variation)
         parabolic-modifier (/ parabolic-field-val (+ 2.0 root-height))
-        parabolic-modifier (if (< (.-rootHeight biome1) root-height) (/ parabolic-modifier 2.0) parabolic-modifier)]
+        parabolic-modifier (if (< (.minHeight biome1) root-height) (/ parabolic-modifier 2.0) parabolic-modifier)]
     [(* height-variation parabolic-modifier) (* root-height parabolic-modifier) parabolic-modifier]))
 
 (defn calc-biome-floats-for-iteration [biomes world-type parabolic-field j1 k1]

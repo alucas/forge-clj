@@ -8,7 +8,7 @@
    [clojure.tools.nrepl.server :refer [start-server]])
   (:import
    [java.lang.reflect Field]
-   [net.minecraftforge.fml.common.Mod$EventHandler FMLCommonHandler]
+   [net.minecraftforge.fml.common Mod Mod$EventHandler FMLCommonHandler]
    [net.minecraftforge.fml.common.event FMLPreInitializationEvent FMLInitializationEvent FMLPostInitializationEvent]))
 
 (declare client?)

@@ -3,7 +3,7 @@
   (:import
    [net.minecraft.block Block]
    [net.minecraft.item Item]
-   [net.minecraft.world.biome BiomeGenBase]
+   #_[net.minecraft.world.biome BiomeGenBase]
    [net.minecraftforge.common IExtendedEntityProperties]
    [net.minecraft.entity Entity]
    [net.minecraftforge.common MinecraftForge BiomeDictionary BiomeManager BiomeDictionary$Type BiomeManager$BiomeType BiomeManager$BiomeEntry]
@@ -58,7 +58,7 @@
   (world-generator): registers a world generator.
   (world-generator, priority): registers a world generator with the specified priority."
   (fn [element & args] [(count args) (type element)]))
-(defmethod register [1 Block] [element forge-name]
+(defmethod register [1 Block] [^Block element ^String forge-name]
   (GameRegistry/registerBlock element forge-name)
   element)
 (defmethod register [1 Item] [element forge-name]
@@ -72,7 +72,7 @@
   (register generator 0))
 (defmethod register [1 IWorldGenerator] [generator mod-priority]
   (GameRegistry/registerWorldGenerator generator mod-priority))
-(defmethod register [3 BiomeGenBase] [^BiomeGenBase biome biome-types biome-groups spawn-weight]
+#_(defmethod register [3 BiomeGenBase] [biome biome-types biome-groups spawn-weight]
   (if (vector? biome-types)
     (doall (map #(BiomeManager/addBiome (get biome-type-list %1 %1) (BiomeManager$BiomeEntry. biome (int spawn-weight))) biome-types))
     (BiomeManager/addBiome (get biome-type-list biome-types biome-types) (BiomeManager$BiomeEntry. biome (int spawn-weight))))

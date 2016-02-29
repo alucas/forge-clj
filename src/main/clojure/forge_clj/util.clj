@@ -3,16 +3,14 @@
   Available to both Client and Server."
   (:require
    [clojure.string :as string]
-   [clojure.set :as cset])
+   [clojure.set])
   (:import
-   [java.util Random]
-   [java.lang.reflect Field]
    [net.minecraft.block Block]
    [net.minecraft.item Item ItemStack]
    [net.minecraft.entity Entity]
    [net.minecraft.entity.player EntityPlayer]
    [net.minecraft.entity.item EntityItem]
-   [net.minecraft.util ChatComponentText Vec3 MovingObjectPosition]
+   [net.minecraft.util ChatComponentText Vec3 MovingObjectPosition BlockPos]
    [net.minecraft.inventory IInventory]
    [net.minecraft.server MinecraftServer]
    [net.minecraft.world World]
@@ -90,8 +88,8 @@
 
 (defn get-tile-entity-at
   "Gets the tile entity in the world at the specified coordinates. For convenience."
-  [^World world x y z]
-  (.getTileEntity world (int x) (int y) (int z)))
+  [^World world ^Integer x ^Integer y ^Integer z]
+  (.getTileEntity world (BlockPos. x y z)))
 
 (defn get-extended-properties
   "Gets the extended entity properties from the specified entity with the provided string id."
@@ -192,9 +190,9 @@
   [^EntityPlayer player s]
   (.addChatComponentMessage player (ChatComponentText. (str s))))
 
-(defn drop-items [^World world x y z]
+(defn drop-items [^World world ^Integer x ^Integer y ^Integer z]
   "Given the world, x, y, and z coordinates of a tile entity implementing IInventory, drops the items contained in the inventory."
-  (let [tile-entity (.getTileEntity world (int x) (int y) (int z))]
+  (let [tile-entity (.getTileEntity world (BlockPos. x y z))]
     (if (instance? IInventory tile-entity)
       (let [tile-entity ^IInventory tile-entity
             per-stack (fn [^ItemStack istack]
@@ -215,10 +213,10 @@
 (defn get-look-coords
   "Given the current player and the world, gets the coordinates and the block side hit that the player is looking at."
   [^EntityPlayer player ^World world]
-  (let [^Vec3 pos-vec (Vec3/createVectorHelper (.-posX player) (+ (.-posY player) (.getEyeHeight player)) (.-posZ player))
+  (let [^Vec3 pos-vec (.getPositionEyes player 1)
         ^Vec3 look-vec (.getLookVec player)
         ^MovingObjectPosition mop (.rayTraceBlocks world pos-vec look-vec)]
-    [(.-blockX mop) (.-blockY mop) (.-blockZ mop) (.-sideHit mop)]))
+    [(.getX (.getBlockPos mop)) (.getY (.getBlockPos mop)) (.getZ (.getBlockPos mop)) (.-sideHit mop)]))
 
 (defn deep-merge
   "Recursively merges maps. If keys are not maps, the last value wins. (Found on google)."
